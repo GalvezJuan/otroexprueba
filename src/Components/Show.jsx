@@ -1,5 +1,8 @@
-export const Show = ({ country }) => {
-    console.log(country)
+export const Show = ({ country, error }) => {
+    if (error)
+        return<>
+        <h2 className="card mb-3">País no encontrado</h2>
+        </>
 
     return <>
         <h2>Resultado de búsqueda:</h2>
