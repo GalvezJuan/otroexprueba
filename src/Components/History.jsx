@@ -1,20 +1,23 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export const History = ({country})=>{
+export const History = ({ country }) => {
+  const [history, setHistory] = useState([]);
 
-    const [history, setHistory] = useState([])
+  useEffect(() => {
+    if (country) {
+      setHistory((prevHistory) => [...prevHistory, country].slice(-5));
+    }
+  }, [country]);
 
-useEffect
-if (country)
-
-
-
-    return<>
-    <h1>Historial</h1>
-    {history.map((element,index)=>{
-        return <div key={index}>
-            <h4>{element.name.common}</h4>
-        </div>
-    })}
-    </>
-}
+  return (
+    <div className="position-fixed top-0 end-0 p-3 bg-light border rounded shadow" style={{ width: "250px", height: "100vh" }}>
+      <h4 className="text-center">Historial</h4>
+      <ul className="list-group">
+        {history.map((element, index) => (
+          <li key={index} className="list-group-item">{element.name.common}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
